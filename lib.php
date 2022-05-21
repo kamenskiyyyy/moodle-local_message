@@ -23,5 +23,5 @@
  */
 
 function local_message_before_footer() {
-    echo "hello";
+//    \core\notification::add('a test message', \core\notification::WARNING);
 }

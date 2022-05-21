@@ -15,24 +15,25 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * local_message file description here.
+ * ${PLUGINNAME} file description here.
  *
- * @package    local_message
+ * @package    ${PLUGINNAME}
  * @copyright  2022 mac <${USEREMAIL}>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 require_once (__DIR__ . '/../../config.php');
-$PAGE->set_url(new moodle_url('/local/message/manage.php'));
+require_once ($CFG->dirroot . '/local/message/classes/form/edit.php');
+
+$PAGE->set_url(new moodle_url('/local/message/edit.php'));
 $PAGE->set_context(\context_system::instance());
-$PAGE->set_title('Manage messages');
+$PAGE->set_title('Edit');
+
+// We want to display our form.
+$mform = new edit();
 
 echo $OUTPUT->header();
 
-$templatecontext = (object)[
-  'texttodisplay' => "List of all current messages",
-];
-
-echo $OUTPUT->render_from_template('local_message/manage', $templatecontext);
+$mform->display();
 
 echo $OUTPUT->footer();
