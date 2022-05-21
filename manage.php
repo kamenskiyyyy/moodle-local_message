@@ -21,3 +21,18 @@
  * @copyright  2022 mac <${USEREMAIL}>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
+
+require_once (__DIR__ . '/../../config.php');
+$PAGE->set_url(new moodle_url('/local/message/manage.php'));
+$PAGE->set_context(\context_system::instance());
+$PAGE->set_title('Manage messages');
+
+echo $OUTPUT->header();
+
+$templatecontext = (object)[
+  'texttodisplay' => "here is some text",
+];
+
+echo $OUTPUT->render_from_template('local_message/manage', $templatecontext);
+
+echo $OUTPUT->footer();
