@@ -15,11 +15,17 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * ${PLUGINNAME} file description here.
+ * Strings for component 'local_message', language "en"
  *
- * @package    ${PLUGINNAME}
+ * @package    local_message
  * @copyright  2022 mac <${USEREMAIL}>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-$string['messagetext'] = 'Message text';
+$string['manage_messages'] = 'Manage messages';
+$string['enter_message'] = 'Message text';
+$string['enter_message_default'] = 'Example message';
+$string['message_type'] = 'Message type';
+$string['cancel_form'] = 'You cancelled the message form';
+$string['create_message_success'] = 'You created a message with title ';
+$string['button_submit_text'] = 'Create a message';

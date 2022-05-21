@@ -20,13 +20,13 @@
 
     Example context (json):
     {
-        texttodisplay:
+
     }
 }}
-<h1>List of messages</h1>
+<h1>{{header_text}}</h1>
 {{#messages}}
     <p>{{messagetext}}</p>
 {{/messages}}
 
 <hr>
-<input type="button" class="btn btn-primary" value="Create a message" onclick="location.href='{{editurl}}'">
+<input type="button" class="btn btn-primary" value="{{button_submit_text}}" onclick="location.href='{{editurl}}'">

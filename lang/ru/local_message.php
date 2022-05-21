@@ -15,28 +15,17 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * local_message file description here.
+ * Strings for component 'local_message', language "en"
  *
  * @package    local_message
  * @copyright  2022 mac <${USEREMAIL}>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-require_once (__DIR__ . '/../../config.php');
-
-global $DB;
-
-$PAGE->set_url(new moodle_url('/local/message/manage.php'));
-$PAGE->set_context(\context_system::instance());
-$PAGE->set_title(get_string('manage_messages', "local_message"));
-
-$messages = $DB->get_records('local_message');
-
-echo $OUTPUT->header();
-
-$templatecontext = (object)['messages' => array_values($messages), 'editurl' => new moodle_url('/local/message/edit.php'), 'header_text' => get_string('manage_messages', "local_message"), 'button_submit_text' => get_string('button_submit_text', "local_message"),
-];
-
-echo $OUTPUT->render_from_template('local_message/manage', $templatecontext);
-
-echo $OUTPUT->footer();
+$string['manage_messages'] = 'Менеджер уведомлений';
+$string['enter_message'] = 'Введите текст уведомления';
+$string['enter_message_default'] = 'Пример уведомления';
+$string['message_type'] = 'Тип уведомления';
+$string['cancel_form'] = 'Вы отменили создание уведомления';
+$string['create_message_success'] = 'Вы создали уведомление с текстом ';
+$string['button_submit_text'] = 'Создать уведомление';
