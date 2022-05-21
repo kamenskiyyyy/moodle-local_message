@@ -30,14 +30,19 @@ global $DB;
 
 $PAGE->set_url(new moodle_url('/local/message/manage.php'));
 $PAGE->set_context(\context_system::instance());
-$PAGE->set_title(get_string('manage_messages', "local_message"));
+$PAGE->set_heading(get_string('manage_messages', "local_message"));
+
+$PAGE->requires->js_call_amd('local_message/confirm');
 
 $manager = new manager();
 $messages = $manager->get_all_messages();
 
 echo $OUTPUT->header();
 
-$templatecontext = (object)['messages' => array_values($messages), 'editurl' => new moodle_url('/local/message/edit.php'), 'header_text' => get_string('manage_messages', "local_message"), 'button_submit_text' => get_string('button_submit_text', "local_message"),
+$templatecontext = (object)[
+    'messages' => array_values($messages),
+    'editurl' => new moodle_url('/local/message/edit.php'),
+    'button_submit_text' => get_string('button_submit_text', "local_message"),
 ];
 
 echo $OUTPUT->render_from_template('local_message/manage', $templatecontext);
