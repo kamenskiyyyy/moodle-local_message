@@ -22,36 +22,48 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-require_once(__DIR__ . '/../../config.php');
-require_once($CFG->dirroot . '/local/message/classes/form/edit.php');
+use local_message\form\edit;
+use local_message\manager;
 
-global $DB;
+require_once(__DIR__ . '/../../config.php');
 
 $PAGE->set_url(new moodle_url('/local/message/edit.php'));
 $PAGE->set_context(\context_system::instance());
 $PAGE->set_title('Edit');
 
+$messageid = optional_param('messageid', null, PARAM_INT);
+
 // We want to display our form.
 $mform = new edit();
-
 
 if ($mform->is_cancelled()) {
     // Go back to manage.php page
     redirect($CFG->wwwroot . '/local/message/manage.php', get_string('cancel_form', "local_message"));
 } else if ($fromform = $mform->get_data()) {
-    // Insert the data into our database table.
+    $manager = new manager();
 
-    $recordtoinsert = new stdClass();
-    $recordtoinsert->messagetext = $fromform->messagetext;
-    $recordtoinsert->messagetype = $fromform->messagetype;
+    if ($fromform->id) {
+        // We are updating an existing message.
+        $manager->update_message($fromform->id, $fromform->messagetext, $fromform->messagetype);
+        redirect($CFG->wwwroot . '/local/message/manage.php', get_string('updated_form', 'local_message') . $fromform->messagetext);
+    }
 
-    $DB->insert_record('local_message', $recordtoinsert);
+    $manager->create_message($fromform->messagetext, $fromform->messagetype);
 
     redirect($CFG->wwwroot . '/local/message/manage.php', get_string('create_message_success', "local_message") . $fromform->messagetext);
 }
 
+if ($messageid) {
+    // Add extra data to the form.
+    global $DB;
+    $manager = new manager();
+    $message = $manager->get_message($messageid);
+    if (!$message) {
+        throw new invalid_parameter_exception('Message not found');
+    }
+    $mform->set_data($message);
+}
+
 echo $OUTPUT->header();
-
 $mform->display();
-
 echo $OUTPUT->footer();

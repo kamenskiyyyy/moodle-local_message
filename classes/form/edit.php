@@ -22,6 +22,9 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+namespace local_message\form;
+use moodleform;
+
 require_once("$CFG->libdir/formslib.php");
 
 class edit extends moodleform {
@@ -31,6 +34,8 @@ class edit extends moodleform {
 
         $mform = $this->_form; // Don't forget the underscore!
 
+        $mform->addElement('hidden', 'id');
+        $mform->setType('id', PARAM_INT);
         $mform->addElement('text', 'messagetext', get_string('enter_message', "local_message")); // Add elements to your form.
         $mform->setType('messagetext', PARAM_NOTAGS);                   // Set type of element.
         $mform->setDefault('messagetext', get_string('enter_message_default', "local_message"));        // Default value.

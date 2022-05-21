@@ -29,3 +29,4 @@ $string['message_type'] = 'Message type';
 $string['cancel_form'] = 'You cancelled the message form';
 $string['create_message_success'] = 'You created a message with title ';
 $string['button_submit_text'] = 'Create a message';
+$string['updated_form'] = 'You updated a message with title ';

@@ -29,3 +29,4 @@ $string['message_type'] = 'Тип уведомления';
 $string['cancel_form'] = 'Вы отменили создание уведомления';
 $string['create_message_success'] = 'Вы создали уведомление с текстом ';
 $string['button_submit_text'] = 'Создать уведомление';
+$string['updated_form'] = 'Вы обновили уведомление с текстом ';
