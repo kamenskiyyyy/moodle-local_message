@@ -23,5 +23,31 @@
  */
 
 function local_message_before_footer() {
-//    \core\notification::add('a test message', \core\notification::WARNING);
+
+    global $DB;
+
+    $messages = $DB->get_records('local_message');
+
+    foreach ($messages as $message) {
+
+        $type = \core\notification::SUCCESS;
+
+        switch ($message->messagetype) {
+            case "0":
+                $type = \core\notification::WARNING;
+                break;
+            case '1':
+                $type = \core\notification::INFO;
+                break;
+            case '3':
+                $type = \core\notification::ERROR;
+                break;
+            case '2':
+                $type = \core\notification::SUCCESS;
+                break;
+        }
+
+        \core\notification::add($message->messagetext, $type);
+    }
+
 }
