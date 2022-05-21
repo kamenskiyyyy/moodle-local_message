@@ -23,10 +23,15 @@
  */
 
 function local_message_before_footer() {
-
-    global $DB;
-
-    $messages = $DB->get_records('local_message');
+    global $DB, $USER;
+    $sql = "SELECT lm.id, lm.messagetext, lm.messagetype
+            FROM {local_message} lm 
+            left outer join {local_message_read} lmr ON lm.id = lmr.messageid 
+            WHERE lmr.userid <> :userid 
+            OR lmr.userid IS NULL";
+    $params = ['userid' => $USER->id,
+    ];
+    $messages = $DB->get_records_sql($sql, $params);
 
     foreach ($messages as $message) {
 
@@ -48,6 +53,12 @@ function local_message_before_footer() {
         }
 
         \core\notification::add($message->messagetext, $type);
+
+        $readrecord = new stdClass();
+        $readrecord->messageid = $message->id;
+        $readrecord->userid = $USER->id;
+        $readrecord->timeread = time();
+        $DB->insert_record('local_message_read', $readrecord);
     }
 
 }
