@@ -30,7 +30,8 @@ class manager {
 
     /** Insert the data into our database table.
      * @param string $message_text
-     * @param string $message_type
+     * @param string $message_type (0 - WARNING, 1 - INFO, 2 - SUCCESS, 3 - ERROR)
+     *
      * @return bool true if successful
      */
     public function create_message(string $message_text, string $message_type): bool

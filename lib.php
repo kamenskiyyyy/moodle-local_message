@@ -27,7 +27,7 @@ use local_message\manager;
 function local_message_before_footer() {
     global $USER;
 
-    if (!get_config('local_message', 'enabled')) {
+    if($USER->id === 0) {
         return;
     }
 

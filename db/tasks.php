@@ -15,17 +15,24 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * local_message file description here.
+ * ${PLUGINNAME} file description here.
  *
- * @package    local_message
+ * @package    ${PLUGINNAME}
  * @copyright  2022 mac <${USEREMAIL}>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->version   = 2022052220;        // The current plugin version (Date: YYYYMMDDXX).
-$plugin->requires  = 2022041200;        // Requires this Moodle version.
-$plugin->component = 'local_message';      // Full name of the plugin (used for diagnostics)
-$plugin->name = 'local_message';
-$plugin->displayname = 'local_message';
+$tasks = [
+    [
+        'classname' => '\local_message\task\create_new_message',
+        'blocking' => 0,
+        'minute' => '*',
+        'hour' => '*',
+        'day' => '*',
+        'month' => '*',
+        'dayofweek' => '*',
+        'disabled' => 1
+    ],
+];
