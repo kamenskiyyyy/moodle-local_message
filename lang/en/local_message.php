@@ -23,6 +23,9 @@
  */
 
 $string['manage_messages'] = 'Manage messages';
+$string['manage_settings'] = 'Settings for manage messages';
+$string['manage_settings_enable'] = 'Enable';
+$string['manage_settings_enable_desc'] = 'Disable to stop any messages from this plugin being displayed';
 $string['enter_message'] = 'Message text';
 $string['enter_message_default'] = 'Example message';
 $string['message_type'] = 'Message type';
