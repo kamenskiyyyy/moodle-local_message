@@ -157,7 +157,7 @@ class manager {
     public function delete_messages($messageids)
     {
         global $DB;
-        $transaction = $DB->start_delegated_transaction();
+        $transaction = $DB->start_delegated9_transaction();
         list($ids, $params) = $DB->get_in_or_equal($messageids);
         $deletedMessages = $DB->delete_records_select('local_message', "id $ids", $params);
         $deletedReads = $DB->delete_records_select('local_message_read', "messageid $ids", $params);
