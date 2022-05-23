@@ -30,3 +30,5 @@ $string['cancel_form'] = 'You cancelled the message form';
 $string['create_message_success'] = 'You created a message with title ';
 $string['button_submit_text'] = 'Create a message';
 $string['updated_form'] = 'You updated a message with title ';
+$string['delete_message_title'] = 'Delete message';
+$string['delete_message_body'] = 'Are you sure you want to delete message?';
