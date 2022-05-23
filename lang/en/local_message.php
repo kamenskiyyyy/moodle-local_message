@@ -23,6 +23,8 @@
  */
 
 $string['manage_messages'] = 'Manage messages';
+$string['pluginname'] = 'Manage messages';
+$string['message:managemessages'] = 'Manage messages';
 $string['manage_settings'] = 'Settings for manage messages';
 $string['manage_settings_enable'] = 'Enable';
 $string['manage_settings_enable_desc'] = 'Disable to stop any messages from this plugin being displayed';

@@ -23,6 +23,8 @@
  */
 
 $string['manage_messages'] = 'Менеджер уведомлений';
+$string['pluginname'] = 'Менеджер уведомлений';
+$string['message:managemessages'] = 'Менеджер уведомлений';
 $string['manage_settings'] = 'Настройки менеджера уведомлений';
 $string['manage_settings_enable'] = 'Работа';
 $string['manage_settings_enable_desc'] = 'Разрешить работу уведомлениям из плагина';
