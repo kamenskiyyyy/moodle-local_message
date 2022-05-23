@@ -32,3 +32,5 @@ $string['button_submit_text'] = 'Создать уведомление';
 $string['updated_form'] = 'Вы обновили уведомление с текстом ';
 $string['delete_message_title'] = 'Удалить сообшение';
 $string['delete_message_body'] = 'Вы ходител удалить это сообщение?';
+$string['delete_message_fail'] = 'Ошибка удаления';
+$string['delete_message_loading'] = 'Удаление...';

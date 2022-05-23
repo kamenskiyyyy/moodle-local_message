@@ -20,16 +20,19 @@
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-define(['jquery', 'core/modal_factory', 'core/str', "core/modal_events"], function($, ModalFactory, String, ModalEvents) {
-    const trigger = $('.local_message_delete_button');
-    ModalFactory.create({
-        type: ModalFactory.types.SAVE_CANCEL,
-        title: String.get_string('delete_message_title', 'local_message'),
-        body: String.get_string('delete_message_body', 'local_message'),
-        preShowCallback: function(triggerElement, modal) {
-            triggerElement = $(triggerElement);
-            let classString = triggerElement[0].classList[0];
-            let messageid = classString.substr(classString.lastIndexOf('local_messageid') + 'local_messageid'.length);
+define(['jquery', 'core/modal_factory', 'core/str', "core/modal_events", 'core/ajax', 'core/notification'],
+    function($, ModalFactory,
+             String, ModalEvents,
+             Ajax, Notification) {
+        const trigger = $('.local_message_delete_button');
+        ModalFactory.create({
+            type: ModalFactory.types.SAVE_CANCEL,
+            title: String.get_string('delete_message_title', 'local_message'),
+            body: String.get_string('delete_message_body', 'local_message'),
+            preShowCallback: function(triggerElement, modal) {
+                triggerElement = $(triggerElement);
+                let classString = triggerElement[0].classList[0];
+                let messageid = classString.substr(classString.lastIndexOf('local_messageid') + 'local_messageid'.length);
 
             modal.params = {'messageid': messageid};
             modal.setSaveButtonText(String.get_string('delete_message_title', "local_message"));
@@ -41,6 +44,27 @@ define(['jquery', 'core/modal_factory', 'core/str', "core/modal_events"], functi
             modal.getRoot().on(ModalEvents.save, function(e) {
                 e.preventDefault();
 
+                let footer = Y.one('.modal-footer');
+                footer.setContent(String.get_string('delete_message_loading', "local_message"));
+                let spinner = M.util.add_spinner(Y, footer);
+                spinner.show();
+
+                let request = {
+                    methodname: "local_message_delete_message",
+                    args: modal.params,
+                };
+
+                Ajax.call([request])[0]
+                    .done(function(data) {
+                        if (data === true) {
+                            window.location.reload();
+                        } else {
+                            Notification.addNotification({
+                                message: String.get_string("delete_message_fail", "local_message"),
+                                type: "error",
+                            });
+                        }
+                    }).fail(Notification.exception);
             });
         });
 });

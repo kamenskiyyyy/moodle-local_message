@@ -32,3 +32,5 @@ $string['button_submit_text'] = 'Create a message';
 $string['updated_form'] = 'You updated a message with title ';
 $string['delete_message_title'] = 'Delete message';
 $string['delete_message_body'] = 'Are you sure you want to delete message?';
+$string['delete_message_fail'] = 'Delete is failed';
+$string['delete_message_loading'] = 'Deleting...';

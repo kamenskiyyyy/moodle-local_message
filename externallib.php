@@ -45,7 +45,7 @@ class local_message_external extends external_api {
      * @return external_function_parameters
      */
     public static function delete_message_parameters() {
-        return new external_function_parameters(['messageid' => new external_value(PARAM_INT, 'id of message')],)
+        return new external_function_parameters(['messageid' => new external_value(PARAM_INT, 'id of message')],);
     }
 
     /**
