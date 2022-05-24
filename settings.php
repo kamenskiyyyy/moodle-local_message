@@ -32,6 +32,4 @@ if ($hassiteconfig) {
     $settings->add(new admin_setting_configcheckbox('local_message/enabled', get_string('manage_settings_enable', 'local_message'), get_string('manage_settings_enable_desc', 'local_message'), "1"));
 
     $ADMIN->add('local_message_category', new admin_externalpage('local_message_manage', get_string('manage_messages', 'local_message'), $CFG->wwwroot . '/local/message/manage.php'));
-
-
 }

@@ -24,7 +24,6 @@
 
 use local_message\manager;
 require_once (__DIR__ . '/../../config.php');
-global $DB;
 
 require_login();
 $context = context_system::instance();
